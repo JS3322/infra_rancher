@@ -65,4 +65,5 @@ spec:
 							volumeMounts:
 								{{- toYaml .Values.mongoManagement.volumeMounts | default "" | nindent 12 }}
 					volumes:
-						{{- toYaml }} 
+						{{- toYaml .Values.mongoManagement.volumes | default "" | nindent 8 }} 
+{{- end }}
