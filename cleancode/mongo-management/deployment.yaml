@@ -40,3 +40,29 @@ spec:
 					  image: {{ .Values.mongoManagement.image }}
 					  {{- with .Values.mongoManagement.resource }}
 					  resource:
+								{{- toYaml . | nindent 12 }}
+							{{- end }}
+							{{ if .Values.mongoManagement.healthCheckPath }}
+							livenessProbe:
+								httpGet:
+									path: {{ .Values.mongoManagement.healthCheckPath }}
+									port: 5000
+								intialDelaySeconds: 10
+								periodSeconds: 5
+							readinessProbe:
+								httpGet:
+									path: {{ .Values.mongoManagement.healthCheckPath }}
+									port: 5000
+								initialDelaySeconds: 10
+								periodSeconds: 5
+							{{- end }}
+							{{- with .Values.mongoManagement.env }}
+							env:
+								{{- toYaml . | nindent 12 }}
+							{{- end }}
+							ports:
+								- containerPort: 8000
+							volumeMounts:
+								{{- toYaml .Values.mongoManagement.volumeMounts | default "" | nindent 12 }}
+					volumes:
+						{{- toYaml }} 
