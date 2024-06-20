@@ -1,0 +1,21 @@
+{{ if .Values.mongoManagement.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+	lables:
+		app: {{ .Values.mongoManagement.name }}
+	name: {{ .Values.mongoManagement.name }}
+spec:
+	ports:
+		- name: http
+		  port: {{ .Values.mongoManagement.service.port }}
+		  protocal: TCP
+		  targetPort: {{ .Values.mongoManagement.service.targetPort }}
+		  {{ if eq .Values.mongoManagement.service.type "NodePort" }}
+		  nodePort: {{ .Values.mongoManagement.service.nodePort }}
+		  {{- end }}
+	selector:
+		app: {{ .Values.mongoManagement.name }}
+	type: {{ .Values.mongoManagement.service.type }}
+{{- end }}
