@@ -1,0 +1,42 @@
+{{ if .Values.mongoManagement.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+	name: {{ .Values.mongoManagement.name }}
+	labels:
+		app: {{ .Values.mongoManagement.name }}
+spec:
+	revisionHistoryLimit: 1
+	replicase: {{ .Values.mongoManagement.replacaCount }}
+	selector:
+		matchLabels:
+			app: {{ .Values.mongoManagement.name }}
+	stategy:
+		type: RollingUpdate
+		rollingUpdate:
+			maxUnavalilable: 1
+			maxSurge: 1
+		templte:
+			metadata:
+				labels:
+					app: {{ .Values.mongoManagement.name }}
+			spec:
+				{{- with .Values.mongoManagement.hostAliases }}
+				affinity:
+					{{- toYaml . | nindent 8 }}
+				{{- end }}
+				{{- with .Values.mongoManagement.hostAliases }}
+				hostAliases:
+					{{- toYaml . | nindent 8 }}
+				{{- end }}
+				{{- with .Values.imagePullSecrets }}
+				imagePullSecrets:
+					{{- toYaml . | nindent 8 }}
+				{{- end }}
+				containers:
+					- name: app
+					  imagePullPolicy: Always
+					  image: {{ .Values.mongoManagement.image }}
+					  {{- with .Values.mongoManagement.resource }}
+					  resource:
