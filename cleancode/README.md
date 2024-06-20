@@ -16,6 +16,21 @@ helm upgrade -- install {name} - {namespace} -f values.yaml
 heml delete {name} -n {namespace}
 ```
 
+### 프로세스
+```
+stages{
+	stage('Update Chart Image) {
+		steps {
+			build job: 'CLEANCODE-DEV/UPDATE_CHART_IMAGE', wait: true, propagate: true, parameters: [
+				string(name: 'APP', value: "cleancode-mongo-management"),
+				string(name: 'IMAGE', value: "${HARBOR_PROJECT}/${IMAGE_NAME}"),
+				string(name: 'TAG', value: "${scmVars.GIT_COMMIT}")
+			]
+		}
+	}
+}
+```
+
 ## parameters
 
 ### common parameters
