@@ -3,3 +3,55 @@ annotations: {}
 arbiter:
 	affinity: {}
 	annotations: {}
+	args: []
+	command: []
+	configuration: ''
+	containerPorts:
+		mongodb: 27017
+	containerSecurityContext:
+		allowPrivilegeEscalation: false
+		capabilities:
+			drop:
+				-	ALL
+			enabled: true
+			runAsGroup: 0
+			runAsNonRoot: true
+			runAsUser: 1001
+			seccompProfile:
+				type: RuntimeDefault
+	customLivenssProbe: {}
+	customReadinessProbe: {}
+	customStartupProbe: {}
+	enabled: true
+	existingConfigmap: ''
+	extraEnvVars: []
+	extraEnvVarsCM: ''
+	extraEnvVarsSecret: ''
+	extraFlas: []
+	extraVolumeMounts: []
+	extraVolumes: []
+	hostAliases: []
+	initContainers: []
+	labels: {}
+	lifecycleHooks: {}
+	livenessProbe:
+		enbale: true
+		failureThreshold: 6
+		initialDelaySeconds: 30
+		periodSeconds: 20
+		successThreshold: 1
+		timeoutSeconds: 10
+	nodeAffinityPreset:
+		key: ''
+		type: ''
+		values: []
+	nodeSelector: {}
+	pdb:
+		create: false
+		maxUnavailable: ''
+		minAvailable: 1
+	podAffinityPreset: ''
+	podAnnotations: {}
+	podAntiAffinityPreset: soft
+	podLables: {}
+	podManagementPolicy: OrderedReady
