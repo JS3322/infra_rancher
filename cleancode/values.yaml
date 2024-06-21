@@ -1,0 +1,5 @@
+imagePullSecrets:
+	- name: image-pull-secret
+
+mongoManagement:
+	enable: true
