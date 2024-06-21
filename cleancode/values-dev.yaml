@@ -16,9 +16,9 @@ secrets:
 	  data:
 	  	mongodb-uri: <생략>
 	  	mongodb-database: <생략>
-		oracle-url:
-		oracle-username:
-		oracle-password:
+			oracle-url: <생략>
+			oracle-username: <생략>
+			oracle-password: <생략>
 
 configmaps:
 	- name: enviroment
