@@ -1,3 +1,4 @@
+@template 로 이동
 {{- range .Values.pvcs }}
 ---
 apiVersion: v1
