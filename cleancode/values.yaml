@@ -3,3 +3,9 @@ imagePullSecrets:
 
 mongoManagement:
 	enable: true
+
+secrets: []
+
+configmaps: []
+
+pvcs: []
