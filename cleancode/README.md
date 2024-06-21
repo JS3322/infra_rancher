@@ -16,7 +16,7 @@ helm upgrade -- install {name} - {namespace} -f values.yaml
 heml delete {name} -n {namespace}
 ```
 
-### 프로세스
+### 프로세스 (jenkins 빌드 시 update)
 ```
 stages{
 	stage('Update Chart Image) {
