@@ -1,0 +1,33 @@
+mongoManagement:
+	image: jscleancode/mongo-management:<생략>
+
+secrets:
+	- name: image-pull-secret
+	  type: kubernetes.io/dockerconfigjson
+	  data:
+	  	.dockerconfigjson: <생략>
+	- name: dev.cleancode.kr
+	  type: kubernetes.io/tls
+	  data:
+	  	tls.crt: <생략>
+	  	tls.key: <생략>
+	- name: enviroment
+	  type: Opaque
+	  data:
+	  	mongodb-uri: <생략>
+	  	mongodb-database: <생략>
+		oracle-url: <생략>
+		oracle-username: <생략>
+		oracle-password: <생략>
+
+configmaps:
+	- name: enviroment
+	  data:
+		build-type: dev
+		url-cleancode-backend: http://cleancode-backend:<생략>
+		url-cleancode-batch: http://cleancode-batch:<생략>
+
+pvcs:
+	- name: cleancode-log
+	  storageClass: nfs-client
+	  size: 20Gi
