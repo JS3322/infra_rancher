@@ -1,3 +1,27 @@
 architecture: replicaset
 auth:
 	rootPassword: <생략>
+externalAccess:
+	autoDiscovery:
+		enableed: true
+	enabled: true
+	service:
+		allocateLoadBalancerNodePorts: false
+		nodePorts:
+			- 30017
+			- 30018
+			- 30019
+		type: NodePort
+global:
+	imageRegistry: <dockerhub>
+	storageClass: nfs-client
+image:
+	#tag: 8.0.0-rc9-jammy
+	tag: 6.0.5-debian-11-r1
+persistance:
+	size: 30Gi
+rbac:
+	create: true
+replicaCount: 3
+service:
+	externalTrafficPolicy: Cluster
